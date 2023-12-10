@@ -1,9 +1,10 @@
 import * as React from 'react';
 // import useStyles from './Style'
-import {Container, CssBaseline, Grid, Typography} from "@mui/material";
+import {Button, Container, CssBaseline, Grid, Typography} from "@mui/material";
 import RecipeCard from "./RecipeCard";
+import {useEffect, useState} from "react";
 
-const cards = [
+const initCards = [
   { id: 1, tittle: "Soto", content: "Sample text, bebas diisi apa saja yang baik-baik sesuka hati anda" },
   { id: 2, tittle: "Bakso", content: "Sample text, bebas diisi apa saja yang baik-baik sesuka hati anda" },
   { id: 3, tittle: "Sate", content: "Sample text, bebas diisi apa saja yang baik-baik sesuka hati anda" },
@@ -14,6 +15,39 @@ const cards = [
 
 export default function Recipes() {
   // const classes = useStyles();
+  const [cards, setCards] = useState([])
+  const [open, setOpen] = useState([])
+
+  function getdata(){
+    //
+    //
+    //
+    return [{ id: 6, tittle: "Sayur Bayam", content: "Sample text, bebas diisi apa saja yang baik-baik sesuka hati anda" }]
+  }
+
+  useEffect(() => {
+    // komunikasi ke server untuk request data
+    setCards(getdata())
+    console.log('sekali waktu component terbentuk pertama kali')
+  }, []);
+
+  useEffect(() => {
+    // komunikasi ke server untuk request data
+    console.log('re-render')
+  });
+
+  useEffect(() => {
+    // komunikasi ke server untuk request data
+    console.log('re-render if cards change')
+  },[cards]);
+
+  const tambahData = ()=>{
+    const dataBaru = { id: Math.random(), tittle: "Sayur Bayam", content: "Sample text, bebas diisi apa saja yang baik-baik sesuka hati anda" }
+    setCards([...cards, dataBaru])
+  }
+
+
+
 
   return (
     <React.Fragment>
@@ -22,6 +56,7 @@ export default function Recipes() {
         <div
             // className={classes.heroContent}
         >
+
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -37,6 +72,7 @@ export default function Recipes() {
               tersaji disini untuk memberi panduan dan mempermudah dalam menentukan hidangan lezat untuk
               keluarga anda
             </Typography>
+            <Button onClick={tambahData} >Tambah</Button>
             <div
                 // className={classes.heroButtons}
           >

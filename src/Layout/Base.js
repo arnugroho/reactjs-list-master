@@ -8,11 +8,10 @@ import {CssBaseline} from "@mui/material";
 import {Route, Routes} from "react-router-dom";
 
 //Halaman base untuk layout
-const Base = ({match}) => {
+const Base = () => {
     // const classes = LayoutStyles();
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
-        // console.log("this")
         setOpen(!open);
     }
     return (
